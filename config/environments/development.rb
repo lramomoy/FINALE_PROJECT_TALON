@@ -32,8 +32,8 @@ Rails.application.configure do
     port: 587,
     authentication: :plain,
     domain: 'sendinblue.com',
-    user_name: 'lorrieamomoy@gmail.com',
-    password: 'UNqM6vKzTtdVjgcQ'
+    user_name: 'lorrieamomoy@icloud.com',
+    password: 'dkHXhvTjBJ5pyYrx'
   }
 
   config.action_mailer.delivery_method = :smtp
