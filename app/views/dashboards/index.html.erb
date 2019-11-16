@@ -1,0 +1,110 @@
+
+<!--IF YOU CAN GET THE IMAGES TO WORK TURN THIS SLIDESHOW CONTAINER ON!!!
+
+<div class="slideshow-container">
+
+  <div class="mySlides fade">
+    <div class="numbertext">1 / 3</div>
+    <img src="../../assets/images/boxbraids.jpg" style="width:100%">
+    <div class="text">Caption Text</div>
+  </div>
+
+  <div class="mySlides fade">
+    <div class="numbertext">2 / 3</div>
+    <img src="../../assets/images/cornrows.jpg" style="width:100%">
+    <div class="text">Caption Two</div>
+  </div>
+
+  <div class="mySlides fade">
+    <div class="numbertext">3 / 3</div>
+    <img src="../../assets/images/kinky.jpg" style="width:100%">
+    <div class="text">Caption Three</div>
+  </div>
+
+</div>
+<br>
+
+<div style="text-align:center">
+  <span class="dot"></span>
+  <span class="dot"></span>
+  <span class="dot"></span>
+</div>-->
+
+
+  <div class="jumbotron p-4 p-md-5 rounded">
+    <!--<div class="col-md-6 px-0">-->
+      <h1 class="display-4 font-italic">High-end hair without the high-end attitude</h1>
+      <p class="lead my-3">Having a great hair day makes me feel amazing. And if
+        something as simple as hair can boost my confidence then I want to spread
+        that kind of energy to other women. Confidence allows others to take on adventures
+        they never thought they could!</p>
+    <p> -Elizabeth </p>
+      <!-- <p class="lead mb-0"><a href="https://getbootstrap.com/docs/4.3/examples/blog/#" class="text-white font-weight-bold">Continue reading...</a></p> -->
+    </div>
+  </div>
+
+
+</div>
+
+  <!--Body section starts here-->
+
+  <main role="main" class="container">
+    <div class="row">
+      <div class="col-md-12 blog-main">
+        <h3 class="pb-4 mb-4 border-bottom">
+          Location and Hours:
+        </h3>
+        <div class="map-example">
+          <div class="row">
+            <div class="col-md-6 col-sm-12">
+              <img src="https://www.google.com/maps/vt/data=5ow5MY1ESN5Fp6oxlV7CrQdCa3Mvw9c4bgR8Ar0AGrnP7QzCx9kD-yYrJ0p8PGiWQ9NtYSQkctl7tC_s2hoHv2gtfkiKcGBRkn17wTCumzuiCzHzyqX23XVizlwrhcV7maiGg2SyLqFvVaLQLBqp2sIPd38MwBx0WLV91zDc0cVT0hnx5x1UUkS4Y0SKXHt0_1PyX09CscKInLr6DR9zkSicqHbtU6EhPFYI7xmO9ZsAfkiUTw" style= "width: 100%; height: 13.5em;">
+              <h3 class="pb-4 mb-4 border-bottom"></h3>
+            </div>
+
+            <div class="col-md-6 col-sm-12">
+              <div class="jumbotron-2">
+                <p class="lead"> Monday - Saturday: 3:30pm - 9:30pm </p>
+                <p class="lead"> Address: 16927 Fairway Glen Ln Sugarland 77498</p>
+                <p class="lead"> Walk-ins are accepted only upon availability.</p>
+                <p class="lead"> Please call an hour ahead! Making an appointment is highly recommended.</p>
+
+              </div>
+              <h3 class="pb-4 mb-4 border-bottom"></h3>
+            </div>
+          </div>
+        </div>
+        <br>
+        <div class="col-md-12 blog-main">
+          <h3 class="pb-7 font-italic">
+            Let me know what you think!</h3>
+          <%=link_to 'Leave a Feedback', new_feedback_url, class: 'btn btn-success' %>
+        </div>
+        <h3 class="pb-4 mb-4 border-bottom"></h3>
+
+      </div><!-- /.blog-main -->
+    </div><!-- /.row -->
+
+  </main><!-- /.container -->
+
+<!-- THE SCRIPT FOR THE SLIDESHOW MABOB
+<script>
+    var slideIndex = 0;
+    showSlides();
+
+    function showSlides() {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        var dots = document.getElementsByClassName("dot");
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        slideIndex++;
+        if (slideIndex > slides.length) {slideIndex = 1}
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex-1].style.display = "block";
+        dots[slideIndex-1].className += " active";
+        setTimeout(showSlides, 2000); // Change image every 2 seconds
+    }
+</script>-->

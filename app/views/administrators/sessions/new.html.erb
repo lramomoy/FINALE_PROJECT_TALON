@@ -1,0 +1,35 @@
+<div class="row justify-content-md-center">
+  <div class="col-6">
+    <br>
+    <div class="card card-default">
+      <div class="card-header">Administrator Log in</div>
+      <div class="card-body">
+
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <div class="form-group">
+            <%= f.label :email %><br />
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :password %><br />
+            <%= f.password_field :password, autocomplete: "current-password", class: 'form-control' %>
+          </div>
+
+          <% if devise_mapping.rememberable? %>
+            <div class="form-group">
+              <%= f.check_box :remember_me %>
+              <%= f.label :remember_me %>
+            </div>
+          <% end %>
+
+          <div class="form-group">
+            <%= f.submit "Log in", class: 'btn btn-success' %>
+          </div>
+        <% end %>
+        <%= render "administrators/shared/links" %>
+      </div>
+    </div>
+    <br>
+  </div>
+</div>

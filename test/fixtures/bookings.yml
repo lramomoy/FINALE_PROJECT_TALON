@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  customer_id: 1
+  service_id: 1
+  booking_date: 2019-10-26
+  booking_time: MyString
+  special_request: MyText
+
+two:
+  customer_id: 1
+  service_id: 1
+  booking_date: 2019-10-26
+  booking_time: MyString
+  special_request: MyText

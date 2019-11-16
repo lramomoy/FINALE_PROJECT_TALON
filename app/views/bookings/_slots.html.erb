@@ -1,0 +1,17 @@
+<div class="card card-default">
+  <div class="card-header">Reserve your Spot!</div>
+  <div class="card-body">
+    <% if slots.present? %>
+        <% slots.each_with_index do |slot, index| %>
+            <div class="form-group">
+              <label>
+                <%= radio_button_tag 'booking[booking_time]', slot, index==0, onchange: "$('.appointment-time').html($(this).val())" %>
+                <%= slot %>
+              </label>
+            </div>
+        <% end -%>
+    <% else %>
+        <p>No slots available!!</p>
+    <% end -%>
+  </div>
+</div>

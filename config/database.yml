@@ -1,0 +1,36 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  host:               localhost
+  schema_search_path: public
+  # For details on connection pooling, see rails configuration guide
+  # http://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: 5
+  username: postgres
+
+development:
+  <<: *default
+  database: mb_parlor_development
+  password: nishant18
+
+# Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
+test:
+  <<: *default
+  database: mb_parlor_test
+  password: nishant18
+
+production:
+
+  
+  adapter: postgresql
+  encoding: unicode
+  host: ec2-174-129-252-211.compute-1.amazonaws.com
+  schema_search_path: public
+  # For details on connection pooling, see rails configuration guide
+  # http://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: 5
+  username: gdccijydskwwbl
+  password: 7920733fd22bf099d49b1c97bf63aaf8609618a0152706791338847149ba6dfa
+  database: d6ikccv0u9b2b8

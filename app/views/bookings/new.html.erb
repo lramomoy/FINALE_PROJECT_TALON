@@ -1,0 +1,161 @@
+<%= stylesheet_link_tag 'loader' %>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<div class="loading" style="display: none;">Loading&#8230;</div>
+<div class="row">
+  <div class="col-md-12 col-sm-12">
+    <div class="jumbotron p-4 p-md-5 rounded ">
+      <h1 class="display-4 font-italic">Make your reservation!</h1>
+      <p class="lead my-3">Walk-ins are welcome only upon availability, please make a reservation to ensure your appointment. </p>
+    </div>
+  </div>
+</div>
+
+<div class="row ">
+  <div class="col-md-12 offset-col-md-2">
+    <%= form_tag create_booking_url, method: :post do %>
+      <% if @booking.errors.any? %>
+          <div class="alert alert-danger">
+            <h4><%= pluralize(@booking.errors.count, "error") %> prohibited this booking from being saved:</h4>
+
+            <ul>
+              <% @booking.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
+      <div class="row">
+        <div class="col-sm-12 col-md-12">
+          <div class="form-group">
+            <%= label_tag :booking_date %><br />
+            <%= text_field_tag  'booking[booking_date]', Date.today.strftime('%d-%m-%Y'), min: Date.today.strftime('%d-%m-%Y'), max: (Date.today+2.months).strftime('%d-%m-%Y'), autofocus: true, autocomplete: "booking-date", class: 'form-control', onchange: "$('.appointment-date').html($(this).val())" %>
+          </div>
+        </div>
+      </div>
+      <div class="row mb-2">
+        <div class="col-md-6 col-sm-12">
+          <div class="card card-default">
+            <div class="card-header">Select Service</div>
+            <div class="card-body">
+              <% Service.all.each_with_index do |service, index| %>
+                  <div class="form-group">
+                    <label>
+                      <%= radio_button_tag 'booking[service_id]', service.id, index == 0, onchange: "$('.selected-service').html($(this).parent().text())" %>
+                      <%= service.name %>
+                    </label>
+                  </div>
+              <% end -%>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-12 slots-section">
+          <%= render partial: 'slots', locals: {slots: Booking.available_slots_on(Date.today)} %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12 col-md-12">
+          <div class="card card-default">
+            <div class="card-header">Appointment Date: <span style="font-weight: bold;" class="appointment-date"><%= Date.today.strftime('%d-%m-%Y') %></span> Appointment Time: <span style="font-weight: bold;" class="appointment-time">3:30 pm – 5:30 pm</span></div>
+            <div class="card-body">
+              <div class="form-group">
+                <div class="row mb-2">
+                  <div class="col-5">
+                    <label style="font-weight: bold; float: right;">First Name</label>
+                  </div>
+                  <div class="col-7">
+                    <%= text_field_tag 'customer[first_name]', '', class: 'form-control', required: true %>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="row mb-2">
+                  <div class="col-5">
+                    <label style="font-weight: bold; float: right;">Last Name</label>
+                  </div>
+                  <div class="col-7">
+                    <%= text_field_tag 'customer[last_name]', '', class: 'form-control', required: true %>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="row mb-2">
+                  <div class="col-5">
+                    <label style="font-weight: bold; float: right;">Mobile Number</label>
+                  </div>
+                  <div class="col-7">
+                    <%= number_field_tag 'customer[phone_number]', '', class: 'form-control', required: true, min: 1000000000, max: 9999999999, pattern: "[1-9]{1}[0-9]{9}" %>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="row mb-2">
+                  <div class="col-5">
+                    <label style="font-weight: bold; float: right;">Email</label>
+                  </div>
+                  <div class="col-7">
+                    <%= text_field_tag 'customer[email]', '', class: 'form-control', required: true %>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="row mb-2">
+                  <div class="col-5">
+                    <label style="font-weight: bold; float: right;">Service Selected</label>
+                  </div>
+                  <div class="col-7">
+                    <p class="selected-service"><%= Service.first&.name %></p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="row mb-2">
+                  <div class="col-5">
+                    <label style="font-weight: bold; float: right;">Comments / Special Requests</label>
+                  </div>
+                  <div class="col-7">
+                    <%= text_area_tag 'booking[special_request]', '', class: 'form-control', rows: 2 %>
+                  </div>
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+
+          <br>
+          <div class="form-group">
+            <center>
+              <%= submit_tag 'Confirm Appointment', class: 'btn btn-success' %>
+            </center>
+          </div>
+        </div>
+      </div>
+    <% end -%>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+    $('#booking_booking_date').datepicker({
+        minDate: new Date(),
+        dateFormat: "dd-mm-yy"
+    })
+
+    $(document).ready(function(){
+
+        $('#booking_booking_date').change(function(){
+            $('.loading').show();
+            var selectedDate = $(this).val();
+            $.ajax("<%= get_available_slots_for_booking_url %>?date="+selectedDate);
+        })
+    })
+
+
+</script>

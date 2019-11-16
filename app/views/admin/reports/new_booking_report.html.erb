@@ -1,0 +1,48 @@
+<% content_for(:title) do %>
+    <%= 'Bookings Report' %>
+    <%#= display_resource_name(page.resource_name) %>
+<% end %>
+
+<header class="main-content__header" role="banner">
+  <h1 class="main-content__page-title" id="page-title" style="margin-right: 10px;">
+    <%= content_for(:title) %>
+  </h1>
+
+  <form class="search" role="search" style="float: left; margin-left: 10px;">
+
+    <div style="float: left; display: flex;">
+     <%= date_field_tag 'search[start_date]', (params['search'].try(:[], 'start_date')&.to_date || Date.today.beginning_of_year).strftime('%m-%d-%Y'), class: 'search__input', placeholder: 'From', style: 'float: left; margin-right:10px;', required: true %>
+      <%= date_field_tag 'search[end_date]', (params['search'].try(:[], 'end_date')&.to_date || Date.today.end_of_year).strftime('%m-%d-%Y'), class: 'search__input', placeholder: 'From', style: 'float: left; margin-right:10px;', required: true %>
+      <%= submit_tag 'Search', class: 'button', style: 'float: left; margin-right:20px; background-color: grey;' %>
+      <%= submit_tag 'Save as Excel File', class: 'button', style: 'background-color: green;' %>
+      <%= link_to('Log Out', destroy_administrator_session_path, method: :delete, class: "button", style: 'margin-left: 10px; background-color:#993366;') %>
+    </div>
+  </form>
+</header>
+
+<section class="main-content__body main-content__body--flush">
+  <table aria-labelledby="bookings-report">
+    <thead>
+    <tr>
+      <th>#</th>
+      <th>Customer</th>
+      <th>Service</th>
+      <th>Date & Time</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @bookings.each do |resource| %>
+        <tr style="border-bottom: 1px solid #dfe0e1 !important;" class="js-table-row">
+          <td><%= resource.id %></td>
+          <td><%= resource.customer.full_name %> (<b>Email:</b> <%= resource.customer.email %>, <b>Phone</b>: <%= resource.customer.phone_number %>)</td>
+          <td><%= resource.service.name %></td>
+          <td><%= resource.date_and_time %></td>
+          <td><%= link_to 'Show', admin_booking_url(resource)%></td>
+        </tr>
+    <% end -%>
+    </tbody>
+  </table>
+
+
+<%= paginate @bookings %>

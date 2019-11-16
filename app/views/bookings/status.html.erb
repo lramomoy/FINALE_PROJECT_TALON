@@ -1,0 +1,22 @@
+<div class="row justify-content-md-center">
+  <div class="col-6">
+    <br>
+    <div class="card card-success">
+      <div class="card-header">Appointment confirmed! <br>Please check your email</div>
+      <div class="card-body">
+        <table class="table">
+          <tr>
+            <th style="text-align: right;">Service</th>
+            <td><%= @booking.service.name %></td>
+          </tr>
+          <tr>
+            <th style="text-align: right;">Time and Date</th>
+            <td><%= @booking.date_and_time %></td>
+          </tr>
+        </table>
+      </div>
+
+    </div>
+    <br>
+  </div>
+</div>
