@@ -1,0 +1,7 @@
+{
+  "name": "mb_parlor_2019",
+  "private": true,
+  "dependencies": {
+    "jquery": "^3.4.1"
+  }
+}
