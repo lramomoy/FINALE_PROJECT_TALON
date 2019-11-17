@@ -53,7 +53,7 @@ Rails.application.configure do
     password: 'dkHXhvTjBJ5pyYrx'
   }
 
-  config.action_mailer.default_url_options = { host: 'https://tranquil-earth-62045.herokuapp.com/'}
+  config.action_mailer.default_url_options = { host: 'https://radiant-river-49773.herokuapp.com/'}
 
 
   # Mount Action Cable outside main process or domain
