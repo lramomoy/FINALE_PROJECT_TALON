@@ -30,8 +30,7 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     address: "smtp-relay.sendinblue.com",
     port: 587,
-    authentication: :plain,
-    domain: 'sendinblue.com',
+    authentication: :plainain: 'sendinblue.com',
     user_name: 'lorrieamomoy@icloud.com',
     password: 'dkHXhvTjBJ5pyYrx'
   }
