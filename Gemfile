@@ -25,7 +25,7 @@ gem 'pry'
 gem 'friendly_id'
 gem 'devise'
 gem 'fog-aws'
-gem 'carrierwave', '~> 1.0'
+gem 'carrierwave', '~> 1.3'
 
 gem 'administrate'
 gem 'administrate-field-carrierwave', '~> 0.4.1'
